@@ -18,20 +18,20 @@
 module LVMCookbook
   def require_lvm_gems
     # require attribute specified gems
-    gem 'di-ruby-lvm-attrib', node['lvm']['di-ruby-lvm-attrib']['version']
-    gem 'di-ruby-lvm', node['lvm']['di-ruby-lvm']['version']
+    gem 'otakumike-ruby-lvm-attrib', node['lvm']['di-ruby-lvm-attrib']['version']
+    gem 'otakumike-ruby-lvm', node['lvm']['di-ruby-lvm']['version']
     require 'lvm'
     Chef::Log.debug("Node had di-ruby-lvm-attrib #{node['lvm']['di-ruby-lvm-attrib']['version']} and di-ruby-lvm #{node['lvm']['di-ruby-lvm']['version']} installed. No need to install gems.")
   rescue LoadError
     Chef::Log.debug('Did not find lvm gems of the specified versions installed. Installing now')
 
-    chef_gem 'di-ruby-lvm-attrib' do
+    chef_gem 'otakumike-ruby-lvm-attrib' do
       action :install
       version node['lvm']['di-ruby-lvm-attrib']['version']
       compile_time true
     end
 
-    chef_gem 'di-ruby-lvm' do
+    chef_gem 'otakumike-ruby-lvm' do
       action :install
       version node['lvm']['di-ruby-lvm']['version']
       compile_time true
